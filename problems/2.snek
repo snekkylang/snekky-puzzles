@@ -1,0 +1,14 @@
+mut a = 1;
+mut b = 1;
+mut sum = 0;
+
+while b < 4000000 {
+    if b % 2 == 0 {
+        sum = sum + b;
+    }
+    let t = a + b;
+    a = b;
+    b = t;
+}
+
+Sys.println(sum);

@@ -1,0 +1,12 @@
+mut n = 600851475143;
+
+mut i = 2;
+while i < n {
+    if n % i  == 0 {
+	    n = n / i;
+	}
+
+    i = i + 1;
+}
+		
+Sys.println(n);
