@@ -1,0 +1,21 @@
+let sumOfSquares = func(limit) {
+    mut sum = 0;
+
+    for let i in 1..limit {
+        sum += i * i;
+    }
+
+    return sum;
+};
+
+let squareOfSum = func(limit) {
+    mut sum = 0;
+
+    for let i in 1..limit {
+        sum += i;
+    }
+
+    return sum * sum;
+};
+
+Sys.println(Math.abs(sumOfSquares(100) - squareOfSum(100)));

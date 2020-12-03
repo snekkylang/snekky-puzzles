@@ -4,8 +4,9 @@ mut sum = 0;
 
 while b < 4000000 {
     if b % 2 == 0 {
-        sum = sum + b;
+        sum += b;
     }
+    
     let t = a + b;
     a = b;
     b = t;

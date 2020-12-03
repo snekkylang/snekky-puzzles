@@ -1,0 +1,24 @@
+let isPalindrome = func(s) {
+    for let i in 0...Math.floor(s.length() / 2) {
+        if s.charAt(i) != s.charAt(s.length() - 1 - i) {
+            return false;
+        }
+    }
+
+    return true;
+};
+
+mut largest = 0;
+
+for let a in 100...1000 {
+    for let b in 100...1000 {
+        let result = a * b;
+        let s = result.toString();
+
+        if isPalindrome(s) && largest < result {
+            largest = result;
+        }
+    }
+}
+
+Sys.println(largest);
