@@ -1,0 +1,18 @@
+let input = File.read("./input.txt")
+    .split("\n")
+    .map(func(n) {
+        Number.parse(n)
+    });
+
+
+let solve = func() {
+    for let x in input {
+        for let y in input {
+            if x + y == 2020 {
+                return x * y;
+            }
+        }
+    }
+};
+
+Sys.println(solve());

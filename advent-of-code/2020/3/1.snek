@@ -1,0 +1,24 @@
+let input = File.read("./input.txt")
+    .split("\n")
+    .map(func(v) {
+        v.split("")
+    });
+
+let solve = func() {
+    mut x = 0;
+    mut y = 0;
+    mut encountered = 0;
+
+    while y < input.length() {
+        if input[y][x % input[y].length()] == "#" {
+            encountered += 1;
+        }
+
+        y += 1;
+        x += 3;
+    }
+
+    return encountered;
+};
+
+Sys.println(solve());

@@ -1,0 +1,33 @@
+let input = File.read("./input.txt")
+    .split("\n")
+    .filter(func(v) {
+        v.length() > 0
+    })
+    .map(func(v) {
+        let [amount, char, password] = v.replace(":", "").split(" ");
+        
+        let [index1, index2] = amount
+            .split("-")
+            .map(func(n) {
+                Number.parse(n) - 1
+            });
+
+        {index1: index1, index2: index2, char: char, password: password}
+    });
+
+let solve = func() {
+    mut valid = 0;
+
+    for let i in input {
+        let char1 = i.password.charAt(i.index1);
+        let char2 = i.password.charAt(i.index2);
+
+        if (char1 == i.char && char2 != i.char) || (char1 != i.char && char2 == i.char) {
+            valid += 1;
+        }
+    }
+
+    return valid;
+};
+
+Sys.println(solve());

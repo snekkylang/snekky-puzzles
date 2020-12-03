@@ -1,0 +1,26 @@
+let input = File.read("./input.txt")
+    .split("\n")
+    .map(func(v) {
+        v.split("")
+    });
+
+let solve = func(stepX, stepY) {
+    mut x = 0;
+    mut y = 0;
+    mut encountered = 0;
+
+    while y < input.length() {
+        if input[y][x % input[y].length()] == "#" {
+            encountered += 1;
+        }
+
+        y += stepY;
+        x += stepX;
+    }
+
+    return encountered;
+};
+
+let result = solve(1, 1) * solve(3, 1) * solve(5, 1) * solve(7, 1) * solve(1, 2);
+
+Sys.println(result);

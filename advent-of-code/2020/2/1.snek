@@ -1,0 +1,34 @@
+let input = File.read("./input.txt")
+    .split("\n")
+    .filter(func(v) {
+        v.length() > 0
+    })
+    .map(func(v) {
+        let [amount, char, password] = v.replace(":", "").split(" ");
+        
+        let [min, max] = amount
+            .split("-")
+            .map(func(n) {
+                Number.parse(n)
+            });
+
+        {min: min, max: max, char: char, password: password}
+    });
+
+let solve = func() {
+    mut valid = 0;
+
+    for let i in input {
+        let amount = i.password.split("").filter(func(n) {
+            n == i.char
+        }).length();
+
+        if amount >= i.min && amount <= i.max {
+            valid += 1;
+        }
+    }
+
+    return valid;
+};
+
+Sys.println(solve());
