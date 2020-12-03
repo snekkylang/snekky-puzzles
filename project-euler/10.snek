@@ -1,0 +1,48 @@
+// https://stackoverflow.com/questions/15285534/isprime-function-for-python-language
+let isPrime = func(n) {
+    when {
+        n == 2 || n == 3 => { 
+            return true;
+        }
+        n < 2 || n % 2 == 0 => {
+            return false;
+        }
+        n < 9 => {
+            return true;
+        }
+        n % 3 == 0 => {
+            return false;
+        }
+    }
+
+    let r = Math.floor(Math.pow(n, 0.5));
+    mut f = 5;
+
+    while f <= r {
+        when {
+            n % f == 0 => {
+                return false;
+            }
+            n % (f + 2) == 0 => {
+                return false;
+            }
+        }
+
+        f += 6;
+    }
+
+    return true;
+};
+
+mut sum = 2;
+
+mut i = 3;
+while i < 2000000 {
+    if isPrime(i) {
+        sum += i;
+    }
+
+    i += 2;
+}
+
+Sys.println(sum);
