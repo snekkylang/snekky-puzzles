@@ -1,0 +1,56 @@
+let input = File.read("./input.txt")
+    .split("\r\n")
+    .map(func(v) {
+        v.split("")
+    });
+
+let Position = func(rowMin, rowMax, colMin, colMax) {
+    return {
+        rowMin: rowMin,
+        rowMax: rowMax,
+        colMin: colMin,
+        colMax: colMax,
+    };
+};
+
+let solve = func() {
+    mut highestId = 0;
+
+    for let t in input {
+        mut pos = Position(0, 127, 0, 7);
+
+        for let d in t {            
+            pos = when d {
+                "F" => {
+                    let half = Math.floor((pos.rowMin + pos.rowMax) / 2);
+
+                    Position(pos.rowMin, half, pos.colMin, pos.colMax)
+                }
+                "B" => {
+                    let half = Math.floor((pos.rowMin + pos.rowMax) / 2);
+
+                    Position(half + 1, pos.rowMax, pos.colMin, pos.colMax)  
+                }
+                "R" => {
+                    let half = Math.floor((pos.colMin + pos.colMax) / 2);
+
+                    Position(pos.rowMin, pos.rowMax, half + 1, pos.colMax)  
+                }
+                "L" => {
+                    let half = Math.floor((pos.colMin + pos.colMax) / 2);
+
+                    Position(pos.rowMin, pos.rowMax, pos.colMin, half)  
+                }
+            };
+        }
+
+        let seatId = pos.rowMin * 8 + pos.colMin;
+        if seatId > highestId {
+            highestId = seatId;
+        }
+    }
+
+    return highestId;
+};
+
+Sys.println(solve());

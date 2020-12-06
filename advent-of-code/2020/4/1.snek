@@ -1,0 +1,30 @@
+let input = File.read("./input.txt")
+    .split("\n\n")
+    .map(func(v) {
+        v.replace("\n", " ")
+    })
+    .map(func(v) {
+        let o = {};
+        for let pair in v.split(" ") {
+            let [key, value] = pair.split(":");
+            o[key] = value;
+        }
+
+        o
+    });
+
+let solve = func() {
+    mut valid = 0;
+
+    for let pp in input {
+        if pp.byr != null && pp.iyr != null && pp.eyr != null && pp.hgt != null 
+            && pp.hcl != null && pp.ecl != null && pp.pid != null {
+
+            valid += 1;
+        }
+    }
+
+    return valid;
+};
+
+Sys.println(solve());
