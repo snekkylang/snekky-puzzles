@@ -1,0 +1,40 @@
+let input = File.read("./input.txt")
+    .split("\n\n")
+    .filter(func(v) {
+        v.length() != 0
+    })
+    .map(func(v) {
+        v.split("\n").map(func(x) {
+            x.split("")
+        }).filter(func(v) {
+            v.length() != 0
+        })
+    });
+
+let solve = func() {
+    mut allAnswered = 0;
+
+    for let group in input {
+        let seen = {};
+
+        for let person in group {
+            for let answer in person {
+                if seen[answer] == null {
+                    seen[answer] = 1;
+                } else {
+                    seen[answer] = seen[answer] + 1;
+                }
+            }
+        }
+
+        for let [answer, amount] in seen {
+            if amount == group.length() {
+                allAnswered += 1;
+            }
+        }
+    }
+
+    return allAnswered;
+};
+
+Sys.println(solve());

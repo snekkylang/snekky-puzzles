@@ -1,0 +1,31 @@
+let input = File.read("./input.txt")
+    .split("\n\n")
+    .map(func(v) {
+        v.split("\n").map(func(x) {
+            x.split("")
+        }).filter(func(v) {
+            v.length() != 0
+        })
+    });
+
+let solve = func() {
+    mut uniqueAnswers = 0;
+
+    for let group in input {
+        let seen = [];
+
+        for let person in group {
+            for let answer in person {
+                if !seen.contains(answer) {
+                    seen.push(answer);
+                }
+            }
+        }
+
+        uniqueAnswers += seen.length();
+    }
+
+    return uniqueAnswers;
+};
+
+Sys.println(solve());
